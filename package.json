@@ -1,0 +1,19 @@
+{
+  "name": "ticket-to-ride",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "private": true,
+  "repository": "https://github.com/zarathustra323/ticket-to-ride.git",
+  "license": "MIT",
+  "scripts": {
+    "lerna": "lerna",
+    "test": "lerna run test",
+    "lint": "lerna run lint"
+  },
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
