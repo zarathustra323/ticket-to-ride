@@ -1,0 +1,27 @@
+{
+  "name": "@ticket-to-ride/api",
+  "version": "0.0.0",
+  "description": "Ticket to Ride scoring API.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/ticket-to-ride/tree/main/api#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/ticket-to-ride.git",
+    "directory": "api"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=27980 gulp",
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@parameter1/gulp": "^1.1.11",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
