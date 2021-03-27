@@ -3,6 +3,7 @@ const GraphQLObjectID = require('@parameter1/graphql-type-objectid');
 const GraphQLDate = require('@parameter1/graphql-type-date');
 const merge = require('lodash.merge');
 
+const game = require('./game');
 const user = require('./user');
 
 module.exports = merge({
@@ -31,4 +32,4 @@ module.exports = merge({
       return 'pong';
     },
   },
-}, user);
+}, game, user);

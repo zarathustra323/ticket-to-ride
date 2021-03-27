@@ -1,4 +1,9 @@
 module.exports = {
+  games: [
+    { 'user._id': 1 },
+
+    { updatedAt: 1, _id: 1 },
+  ],
   tokens: [
     { audience: 1, subject: 1 },
     [{ expiresAt: 1 }, { expireAfterSeconds: 0 }],
