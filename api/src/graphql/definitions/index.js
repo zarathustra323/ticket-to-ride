@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 const projectDirectives = require('@parameter1/graphql-directive-project/directives');
 
 const game = require('./game');
+const user = require('./user');
 
 module.exports = gql`
 
@@ -22,5 +23,6 @@ type Mutation {
 }
 
 ${game}
+${user}
 
 `;
