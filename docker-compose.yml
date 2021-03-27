@@ -28,6 +28,7 @@ services:
     command: ["dev"]
     environment:
       <<: *env
+      APP_URL: ${APP_URL-http://0.0.0.0:27981}
       MONGO_URI: ${MONGO_URI-mongodb://root:password123@mongodb-primary:27017,mongodb-secondary:27017?replicaSet=tickettoride&authSource=admin&readPreference=primary}
       SENDGRID_API_KEY: ${SENDGRID_API_KEY}
       TOKEN_SECRET: ${TOKEN_SECRET-thisisntsecretandyoushouldusesomethingdifferentinproductiondawg}
