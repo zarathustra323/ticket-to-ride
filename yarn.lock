@@ -91,6 +91,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@godaddy/terminus@^4.7.0":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@godaddy/terminus/-/terminus-4.7.1.tgz#f4b850617923e00f7080c64f2c97d653e4eea66a"
+  integrity sha512-WA1UpDIUvEJ6pMIlgXrzXkAjHdt33G+j7074MLppZ1b2uN8OaH/QKo5zrASrLCWuczwS31t69aMtqiPWN3ruBA==
+  dependencies:
+    stoppable "^1.1.0"
+
 "@lerna/add@4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-4.0.0.tgz#c36f57d132502a57b9e7058d1548b7a565ef183f"
@@ -975,6 +982,14 @@
     "@parameter1/utils" "^1.1.14"
     async "^3.2.0"
     mongodb "^3.6.5"
+
+"@parameter1/terminus@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@parameter1/terminus/-/terminus-1.5.0.tgz#0143a289803bbc680f594154693d3b9910e1c86c"
+  integrity sha512-h/hr1X1ixsD0/Aj87fCYPMh38hNERIsSKF+XH1EB/VZMG9ovoN448R/+wqPeYTgcImoawx0eE6loRgiVwKnw2Q==
+  dependencies:
+    "@godaddy/terminus" "^4.7.0"
+    envalid "^7.0.0"
 
 "@parameter1/utils@^1.1.14":
   version "1.1.14"
@@ -2795,6 +2810,11 @@ env-paths@^2.2.0:
   resolved "https://registry.yarnpkg.com/env-paths/-/env-paths-2.2.0.tgz#cdca557dc009152917d6166e2febe1f039685e43"
   integrity sha512-6u0VYSCo/OW6IoD5WCLLy9JUGARbamfSavcNXry/eu8aHVFei6CD3Sw+VGX5alea1i9pgPHW0mbu6Xj0uBh7gA==
 
+envalid@^7.0.0, envalid@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/envalid/-/envalid-7.1.0.tgz#fccc499abb257e3992d73b02d014c867a85e2a69"
+  integrity sha512-C5rtCxfj+ozW5q79fBYKcBEf0KSNklKwZudjCzXy9ANT8Pz1MKxPBn6unZnYXXy6e+cqVgnEURQeXmdueG9/kA==
+
 envinfo@^7.7.4:
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.7.4.tgz#c6311cdd38a0e86808c1c9343f667e4267c4a320"
@@ -3894,6 +3914,11 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
+
+helmet@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-4.4.1.tgz#a17e1444d81d7a83ddc6e6f9bc6e2055b994efe7"
+  integrity sha512-G8tp0wUMI7i8wkMk2xLcEvESg5PiCitFMYgGRc/PwULB0RVhTP5GFdxOwvJwp9XVha8CuS8mnhmE8I/8dx/pbw==
 
 homedir-polyfill@^1.0.1:
   version "1.0.3"
@@ -6853,6 +6878,11 @@ static-extend@^0.1.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
+
+stoppable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/stoppable/-/stoppable-1.1.0.tgz#32da568e83ea488b08e4d7ea2c3bcc9d75015d5b"
+  integrity sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw==
 
 stream-exhaust@^1.0.1:
   version "1.0.2"
