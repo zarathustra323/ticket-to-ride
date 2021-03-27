@@ -2,9 +2,10 @@ const bootService = require('@parameter1/terminus/boot-service');
 const { log } = require('@parameter1/terminus/utils');
 const { filterUri } = require('@parameter1/mongodb/utils');
 const mongodb = require('./mongodb');
+const buildIndexes = require('./mongodb/build-indexes');
 const server = require('./server');
 const pkg = require('../package.json');
-const { HOST, PORT } = require('./env');
+const { HOST, PORT, isDevelopment } = require('./env');
 
 process.on('unhandledRejection', (e) => {
   throw e;
@@ -16,9 +17,16 @@ bootService({
   server,
   host: HOST,
   port: PORT,
-  onStart: async () => mongodb.connect().then((client) => log(filterUri(client))),
+  onStart: async () => {
+    await mongodb.connect().then((client) => log(filterUri(client)));
+    if (isDevelopment) {
+      log('Creating MongoDB indexes...');
+      await buildIndexes();
+      log('Indexes created.');
+    }
+  },
   onSignal: () => mongodb.close(),
-  onHealthCheck: () => mongodb.ping({ id: pkg.name }).then(() => 'db okay'),
+  onHealthCheck: () => mongodb.ping({ id: pkg.name }).then(() => 'mongodb okay'),
 }).catch((e) => setImmediate(() => {
   throw e;
 }));
