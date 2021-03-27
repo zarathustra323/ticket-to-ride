@@ -29,6 +29,8 @@ services:
     environment:
       <<: *env
       MONGO_URI: ${MONGO_URI-mongodb://root:password123@mongodb-primary:27017,mongodb-secondary:27017?replicaSet=tickettoride&authSource=admin&readPreference=primary}
+      SENDGRID_API_KEY: ${SENDGRID_API_KEY}
+      TOKEN_SECRET: ${TOKEN_SECRET-thisisntsecretandyoushouldusesomethingdifferentinproductiondawg}
     depends_on:
       - mongodb-secondary
     ports:
