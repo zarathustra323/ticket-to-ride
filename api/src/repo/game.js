@@ -27,6 +27,10 @@ class GameRepo extends PaginableRepo {
 
   /**
    * @param {object} params
+   * @param {ObjectId} params.userId
+   * @param {string} [params.name]
+   * @param {object[]} [params.players]
+   * @param {object} [params.options]
    */
   async create(params = {}) {
     const {
@@ -52,6 +56,20 @@ class GameRepo extends PaginableRepo {
       },
       options: { ...options, withDates: true },
     });
+  }
+
+  /**
+   * @param {object} params
+   * @param {ObjectId} params.userId
+   * @param {object} [params.options]
+   */
+  async paginateForUser(params = {}) {
+    const { userId, options } = await validateAsync(Joi.object({
+      userId: fields.userId,
+      options: Joi.object().default({}),
+    }).required(), params);
+    const query = { 'user._id': userId };
+    return this.paginate({ ...options, query });
   }
 }
 

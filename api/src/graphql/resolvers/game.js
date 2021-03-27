@@ -1,15 +1,6 @@
-module.exports = {
-  /**
-   *
-   */
-  PlayerColorEnum: {
-    BLACK: 'Black',
-    BLUE: 'Blue',
-    GREEN: 'Green',
-    RED: 'Red',
-    YELLOW: 'Yellow',
-  },
+const { connectionProjection } = require('@parameter1/graphql-directive-project/utils');
 
+module.exports = {
   /**
    *
    */
@@ -25,11 +16,38 @@ module.exports = {
   /**
    *
    */
+  GameSortFieldEnum: {
+    ID: '_id',
+    UPDATED_AT: 'updatedAt',
+  },
+
+  /**
+   *
+   */
   Mutation: {
     createGame(_, { input }, { repos, auth }) {
       const userId = auth.getUserId();
       const { name, players } = input;
       return repos.game.create({ userId, name, players });
+    },
+  },
+
+  /**
+   *
+   */
+  Query: {
+    /**
+     *
+     */
+    myGames(_, { input }, { repos, auth }, info) {
+      const userId = auth.getUserId();
+      const { sort, pagination } = input;
+      const options = {
+        sort,
+        projection: connectionProjection(info),
+        ...pagination,
+      };
+      return repos.game.paginateForUser({ userId, options });
     },
   },
 };
