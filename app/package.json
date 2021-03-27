@@ -1,0 +1,49 @@
+{
+  "name": "@ticket-to-ride/app",
+  "version": "0.0.0",
+  "description": "Ticket to Ride scoring application.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/ticket-to-ride/tree/main/app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/ticket-to-ride.git",
+    "directory": "app"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve --port 27981",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/typography": "^0.4.0",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "core-js": "^3.9.1",
+    "dayjs": "^1.10.4",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.11.0",
+    "object-path": "^0.11.5",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "vue": "^2.6.12",
+    "vue-apollo": "^3.0.7",
+    "vue-head": "^2.2.0",
+    "vue-router": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.11",
+    "@vue/cli-plugin-eslint": "~4.5.11",
+    "@vue/cli-plugin-router": "~4.5.11",
+    "@vue/cli-service": "~4.5.11",
+    "@vue/eslint-config-airbnb": "^5.3.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.12"
+  }
+}

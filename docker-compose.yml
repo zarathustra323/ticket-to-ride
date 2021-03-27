@@ -37,6 +37,19 @@ services:
     ports:
       - "27980:27980"
 
+  app:
+    <<: *node
+    working_dir: /ticket-to-ride/app
+    entrypoint: ["yarn"]
+    command: ["dev"]
+    environment:
+      <<: *env
+      VUE_APP_GRAPHQL_URL: ${VUE_APP_GRAPHQL_URL-https://0.0.0.0:27980/graphql}
+    depends_on:
+      - api
+    ports:
+      - "27981:27981"
+
   mongodb-primary:
     image: bitnami/mongodb:4.0
     environment:
