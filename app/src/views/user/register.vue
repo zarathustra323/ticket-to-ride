@@ -102,11 +102,8 @@ export default {
         this.sent = false;
         this.error = null;
         this.isLoading = true;
-
-        // @todo add redirect!
-
-        const variables = { input: this.user };
-        await this.$apollo.mutate({ mutation: REGISTER_USER, variables });
+        const input = { ...this.user, redirectTo: this.redirectTo };
+        await this.$apollo.mutate({ mutation: REGISTER_USER, variables: { input } });
         this.sent = true;
       } catch (e) {
         this.error = new GraphQLError(e);
