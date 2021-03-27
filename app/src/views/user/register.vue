@@ -5,17 +5,20 @@
     </h1>
     <h2>
       Or
-      <router-link :to="{ name: 'user.login', query: { next: redirectTo } }">
+      <go :to="{ name: 'user.login', query: { next: redirectTo } }">
         sign in to your account
-      </router-link>
+      </go>
     </h2>
   </div>
 </template>
 
 <script>
+import Go from '../../components/link.vue';
 
 export default {
-  components: {},
+  components: {
+    Go,
+  },
 
   head: {
     title: { inner: 'Register' },
