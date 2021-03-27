@@ -1,9 +1,11 @@
 <template>
-  <div>Index</div>
+  <div />
 </template>
 
 <script>
 export default {
-
+  head: {
+    title: { inner: 'Home' },
+  },
 };
 </script>

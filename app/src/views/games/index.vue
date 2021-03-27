@@ -1,0 +1,3 @@
+<template>
+  <h2>Games Index</h2>
+</template>
