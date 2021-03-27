@@ -989,6 +989,13 @@
   dependencies:
     burner-email-providers "^1.0.39"
 
+"@parameter1/graphql-directive-project@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@parameter1/graphql-directive-project/-/graphql-directive-project-1.0.15.tgz#ef34ba7f74e8802c5787fc4765d0d4e6f2e99871"
+  integrity sha512-Gy4Kx7uADJ6tWmFNHMG7k73hQrrVmTn3A41S8pTFL/MJ+2HiLwdXshRtw4U9c615VGKed+qULPp7j9Xsm/jSiQ==
+  dependencies:
+    "@parameter1/utils" "^1.1.14"
+
 "@parameter1/graphql-mongodb-pagination@^2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@parameter1/graphql-mongodb-pagination/-/graphql-mongodb-pagination-2.2.5.tgz#7ae84248707021103a1068894c21adc8a00402f7"
