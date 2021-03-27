@@ -9,7 +9,7 @@ service.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 service.use(helmet({ contentSecurityPolicy: false }));
 
 service.get('/', (req, res) => {
-  res.json({ ping: 'pong' });
+  res.redirect(301, '/graphql');
 });
 
 graphql({ app: service, path: '/graphql' });
