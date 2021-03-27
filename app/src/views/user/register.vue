@@ -9,7 +9,7 @@
         </go>
       </h2>
     </div>
-    <login-link-sent v-if="sent" />
+    <login-link-sent v-if="sent" :email="user.email" />
     <form v-else class="space-y-4" @submit.prevent="register">
       <div>
         <input-label for="register.email" class="ml-1 mb-1">Email Address</input-label>
