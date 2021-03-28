@@ -15,6 +15,7 @@ module.exports = merge({
       return null;
     },
   },
+
   /**
    *
    */
@@ -23,7 +24,7 @@ module.exports = merge({
      *
      */
     games(_, __, { gameData }) {
-      return Object.keys(gameData).map((key) => gameData[key]);
+      return gameData.values();
     },
   },
 }, classic);

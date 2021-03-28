@@ -4,6 +4,7 @@ const projectDirectives = require('@parameter1/graphql-directive-project/directi
 const pagination = require('@parameter1/graphql-mongodb-pagination/definitions');
 
 const game = require('./game');
+const gameInstance = require('./game-instance');
 const user = require('./user');
 
 module.exports = gql`
@@ -28,6 +29,7 @@ type Mutation {
 }
 
 ${game}
+${gameInstance}
 ${user}
 
 `;

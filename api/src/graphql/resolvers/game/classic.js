@@ -6,22 +6,22 @@ module.exports = {
     /**
      *
      */
-    destinations(_, __, { gameData }) {
-      return gameData.classic.cities.values();
+    destinations(game) {
+      return game.cities.values();
     },
 
     /**
      *
      */
-    playerColors(_, __, { gameData }) {
-      return gameData.classic.playerColors.values();
+    playerColors(game) {
+      return game.playerColors.values();
     },
 
     /**
      *
      */
-    routeColors(_, __, { gameData }) {
-      return gameData.classic.playerColors.values();
+    routeColors(game) {
+      return game.routeColors.values();
     },
   },
 
@@ -33,7 +33,7 @@ module.exports = {
      *
      */
     destinations({ id }, _, { gameData }) {
-      return gameData.classic.getDestinationsFor(id);
+      return gameData.get('CLASSIC').getDestinationsFor(id);
     },
   },
 };

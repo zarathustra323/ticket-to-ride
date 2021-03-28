@@ -1,12 +1,10 @@
+const Game = require('./game');
 const Elements = require('./classes/elements');
 const Routes = require('./classes/routes');
-const createId = require('./utils/create-id');
 
-class ClassicGame {
+class ClassicGame extends Game {
   constructor() {
-    const name = 'Classic';
-    this.id = createId(name);
-    this.name = name;
+    super({ name: 'Classic' });
 
     this.playerColors = new Elements([
       'Black',

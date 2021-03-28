@@ -1,9 +1,9 @@
 const Joi = require('../../../joi');
-const { classic } = require('../../../data');
+const games = require('../../../data');
 const fields = require('./index');
 
 module.exports = {
   id: fields.id,
   name: fields.name,
-  color: Joi.string().trim().valid(...classic.playerColors.keys()),
+  color: Joi.string().trim().valid(...games.get('CLASSIC').playerColors.keys()),
 };
