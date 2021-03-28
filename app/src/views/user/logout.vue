@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{ title }}</h1>
+  <div class="p-4 max-w-sm space-y-6">
+    <h1 class="text-lg font-medium">{{ title }}</h1>
     <div v-if="error">
       {{ error.message }}
     </div>

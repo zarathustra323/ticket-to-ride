@@ -1,18 +1,26 @@
 <template>
-  <div>
-    <h1>{{ title }}</h1>
+  <div class="p-4 max-w-sm space-y-6">
+    <h1 class="text-lg font-medium">{{ title }}</h1>
     <div v-if="error">
       {{ error.message }}
+      <go :to="{ name: 'user.login' }">
+        Try signing in again
+      </go>
     </div>
   </div>
 </template>
 
 <script>
+import Go from '../components/link.vue';
 import { LOGIN_USER_FROM_LINK } from '../graphql/mutations';
 import GraphQLError from '../utils/graphql-error';
 import tokenStorage from '../services/token-storage';
 
 export default {
+  components: {
+    Go,
+  },
+
   data: () => ({
     error: null,
   }),
