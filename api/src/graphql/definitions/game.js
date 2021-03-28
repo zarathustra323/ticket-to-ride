@@ -3,6 +3,8 @@ const { gql } = require('apollo-server-express');
 module.exports = gql`
 
 extend type Query {
+  "Finds all available game types."
+  gameTypes: [GameType!]!
   "Finds all games for the currently logged-in user. The result is paginated."
   myGames(input: MyGamesQueryInput = {}): GameConnection!
     @auth
@@ -38,6 +40,13 @@ interface GamePlayerInterface {
   "The unique player identifier."
   id: ObjectID! @project(field: "_id")
   "The player's name."
+  name: String!
+}
+
+type GameType {
+  "The internal game type."
+  id: GameTypeEnum!
+  "The game type name"
   name: String!
 }
 

@@ -1,8 +1,13 @@
 const Elements = require('./classes/elements');
 const Routes = require('./classes/routes');
+const createId = require('./utils/create-id');
 
 class ClassicGame {
   constructor() {
+    const name = 'Classic';
+    this.id = createId(name);
+    this.name = name;
+
     this.playerColors = new Elements([
       'Black',
       'Blue',

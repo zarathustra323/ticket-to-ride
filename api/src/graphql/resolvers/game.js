@@ -52,6 +52,13 @@ module.exports = {
     /**
      *
      */
+    gameTypes(_, __, { gameData }) {
+      return Object.keys(gameData).map((key) => gameData[key]);
+    },
+
+    /**
+     *
+     */
     myGames(_, { input }, { repos, auth }, info) {
       const userId = auth.getUserId();
       const { sort, pagination } = input;
