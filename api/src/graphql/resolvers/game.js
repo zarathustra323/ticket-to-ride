@@ -4,12 +4,12 @@ module.exports = {
   /**
    *
    */
-  GameInterface: {
+  GamePlayerInterface: {
     /**
      *
      */
     __resolveType(doc) {
-      if (doc._type === 'CLASSIC') return 'ClassicGame';
+      if (doc._type === 'CLASSIC') return 'ClassicGamePlayer';
       return null;
     },
   },
@@ -17,12 +17,12 @@ module.exports = {
   /**
    *
    */
-  ClassicGame: {
+  Game: {
     /**
      *
      */
-    players({ players }) {
-      return Array.isArray(players) ? players : [];
+    players({ _type, players }) {
+      return Array.isArray(players) ? players.map((player) => ({ ...player, _type })) : [];
     },
   },
 
