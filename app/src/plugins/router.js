@@ -57,6 +57,13 @@ const routes = [
         path: '',
         name: 'games.index',
         component: () => import(/* webpackChunkName: "games.index" */ '../views/games/index.vue'),
+        children: [
+          {
+            path: 'new',
+            name: 'games.new',
+            component: () => import(/* webpackChunkName: "games.new" */ '../views/games/create.vue'),
+          },
+        ],
       },
     ],
   },
