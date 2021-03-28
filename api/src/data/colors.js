@@ -1,12 +1,18 @@
+const createId = require('./utils/create-id');
+
 module.exports = {
-  player: new Set([
+  player: [
     'Black',
     'Blue',
     'Green',
     'Red',
     'Yellow',
-  ]),
-  ticket: new Set([
+  ].reduce((map, color) => {
+    const id = createId(color);
+    map.set(id, { id, name: color });
+    return map;
+  }, new Map()),
+  ticket: [
     'Black',
     'Blue',
     'Green',
@@ -15,5 +21,9 @@ module.exports = {
     'Red',
     'White',
     'Yellow',
-  ]),
+  ].reduce((map, color) => {
+    const id = createId(color);
+    map.set(id, { id, name: color });
+    return map;
+  }, new Map()),
 };

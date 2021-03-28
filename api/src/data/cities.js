@@ -1,4 +1,4 @@
-const slug = require('slug');
+const createId = require('./utils/create-id');
 
 module.exports = [
   'Atlanta',
@@ -38,7 +38,7 @@ module.exports = [
   'Washington',
   'Winnipeg',
 ].reduce((map, name) => {
-  const id = slug(name);
-  map.set(id, { name });
+  const id = createId(name);
+  map.set(id, { id, name });
   return map;
 }, new Map());

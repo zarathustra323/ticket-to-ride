@@ -14,32 +14,6 @@ module.exports = merge({
   /**
    *
    */
-  PlayerColorEnum: {
-    BLACK: 'Black',
-    BLUE: 'Blue',
-    GREEN: 'Green',
-    RED: 'Red',
-    YELLOW: 'Yellow',
-  },
-
-  /**
-   *
-   */
-  RouteColorEnum: {
-    ANY: 'Any',
-    BLACK: 'Black',
-    BLUE: 'Blue',
-    GREEN: 'Green',
-    ORANGE: 'Orange',
-    PINK: 'Pink',
-    RED: 'Red',
-    WHITE: 'White',
-    YELLOW: 'Yellow',
-  },
-
-  /**
-   *
-   */
   Mutation: {
     /**
      *

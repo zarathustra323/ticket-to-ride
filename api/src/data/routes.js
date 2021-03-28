@@ -1,4 +1,5 @@
-const slug = require('slug');
+const createId = require('./utils/create-id');
+const routeId = require('./utils/route-id');
 
 module.exports = [
   { cities: ['Atlanta', 'Charleston'], length: 2, colors: ['Any'] },
@@ -79,7 +80,12 @@ module.exports = [
   { cities: ['Sault St. Marie', 'Winnipeg'], length: 6, colors: ['Any'] },
   { cities: ['Seattle', 'Vancouver'], length: 1, colors: ['Any', 'Any'] },
 ].reduce((map, route) => {
-  const id = route.cities.sort().map(slug).join('.');
-  map.set(id, route);
+  const id = routeId(route.cities);
+  map.set(id, {
+    id,
+    ...route,
+    cities: route.cities.map(createId),
+    colors: route.colors.map(createId),
+  });
   return map;
 }, new Map());
