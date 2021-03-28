@@ -1,4 +1,5 @@
 const { gql } = require('apollo-server-express');
+const interfaceDirectives = require('@parameter1/graphql-directive-interface-fields/directives');
 const projectDirectives = require('@parameter1/graphql-directive-project/directives');
 const pagination = require('@parameter1/graphql-mongodb-pagination/definitions');
 
@@ -12,6 +13,7 @@ module.exports = gql`
 scalar Date
 scalar ObjectID
 
+${interfaceDirectives.typeDefs}
 ${projectDirectives.typeDefs}
 directive @auth on FIELD_DEFINITION
 
