@@ -1,7 +1,5 @@
 const { gql } = require('apollo-server-express');
 
-const classic = require('./classic');
-
 module.exports = gql`
 
 extend type Query {
@@ -9,6 +7,13 @@ extend type Query {
   myGameInstances(input: MyGameInstancesQueryInput = {}): GameInstanceConnection!
     @auth
 }
+
+extend type Mutation {
+  "Creates a new classic game instance."
+  createNewGame(input: CreateNewGameMutationInput!): GameInstanceInterface!
+    @auth
+}
+
 
 enum GameInstanceSortFieldEnum {
   ID
@@ -20,10 +25,25 @@ interface GameInstanceInterface {
   id: ObjectID! @project(field: "_id")
   "The game information."
   game: GameInterface! @project(field: "_type")
+  "The players playing this game."
+  players: [GamePlayer!]! @project
   "When the game was created, as a timestamp in milliseconds."
   createdAt: Date! @project
   "When the game was last updated, as a timestamp in milliseconds."
   updatedAt: Date! @project
+}
+
+type ClassicGameInstance implements GameInstanceInterface @interfaceFields {
+  id: ObjectID! @project(field: "_id")
+}
+
+type GamePlayer {
+  "The unique player identifier."
+  id: ObjectID! @project(field: "_id")
+  "The player's name."
+  name: String!
+  "The player's color."
+  color: GameColor!
 }
 
 type GameInstanceConnection @projectUsing(type: "GameInstanceInterface") {
@@ -42,6 +62,20 @@ type GameInstanceEdge {
   cursor: String!
 }
 
+input AddGamePlayerMutationInput {
+  "The player's name."
+  name: String!
+  "The player's color ID."
+  colorId: String!
+}
+
+input CreateNewGameMutationInput {
+  "The type of game instance to create."
+  type: GameTypeEnum!
+  "The initial players to add to the game instance."
+  players: [AddGamePlayerMutationInput!] = []
+}
+
 input GameInstanceSortInput {
   "The field to sort by."
   field: GameInstanceSortFieldEnum
@@ -55,7 +89,5 @@ input MyGameInstancesQueryInput {
   "Sets pagination (limit/after) criteria for the query."
   pagination: PaginationInput = {}
 }
-
-${classic}
 
 `;

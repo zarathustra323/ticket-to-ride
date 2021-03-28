@@ -5,5 +5,5 @@ const fields = require('./index');
 module.exports = {
   id: fields.id,
   name: fields.name,
-  color: Joi.string().trim().valid(...games.get('CLASSIC').playerColors.keys()),
+  colorId: Joi.string().trim().valid(...games.get('CLASSIC').playerColors.keys()),
 };

@@ -1,9 +1,6 @@
-const merge = require('lodash.merge');
 const { connectionProjection } = require('@parameter1/graphql-directive-project/utils');
 
-const classic = require('./classic');
-
-module.exports = merge({
+module.exports = {
   /**
    *
    */
@@ -22,6 +19,14 @@ module.exports = merge({
     game({ _type }, _, { gameData }) {
       return gameData.get(_type);
     },
+
+    /**
+     *
+     */
+    players({ _type, players }) {
+      if (!Array.isArray(players)) return [];
+      return players.map((player) => ({ ...player, _type }));
+    },
   },
 
   /**
@@ -30,6 +35,32 @@ module.exports = merge({
   GameInstanceSortFieldEnum: {
     ID: '_id',
     UPDATED_AT: 'updatedAt',
+  },
+
+  /**
+   *
+   */
+  GamePlayer: {
+    /**
+     *
+     */
+    color({ _type, colorId }, _, { gameData }) {
+      return gameData.get(_type).playerColors.get(colorId);
+    },
+  },
+
+  /**
+   *
+   */
+  Mutation: {
+    /**
+     *
+     */
+    createNewGame(_, { input }, { repos, auth }) {
+      const userId = auth.getUserId();
+      const { type, players } = input;
+      return repos.game.create({ type, userId, players });
+    },
   },
 
   /**
@@ -53,4 +84,4 @@ module.exports = merge({
       return repos.game.paginateForUser({ userId, options });
     },
   },
-}, classic);
+};
