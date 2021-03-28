@@ -1,11 +1,5 @@
-const cities = require('./cities');
-const colors = require('./colors');
-const routes = require('./routes');
+const ClassicGame = require('./classic');
 
 module.exports = {
-  classic: {
-    cities,
-    colors,
-    routes,
-  },
+  classic: new ClassicGame(),
 };

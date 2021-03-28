@@ -1,3 +1,6 @@
 const createId = require('./create-id');
 
-module.exports = (tuple) => tuple.slice(0, 2).map(createId).sort().join('.');
+module.exports = (cities, color) => {
+  const elements = [...cities.slice(0, 2).sort(), color || 'ANY'];
+  return elements.map(createId).join('.');
+};

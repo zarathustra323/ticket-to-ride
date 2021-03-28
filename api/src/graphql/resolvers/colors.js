@@ -7,7 +7,7 @@ module.exports = {
      *
      */
     classicPlayerColors(_, __, { gameData }) {
-      return gameData.classic.colors.player.values();
+      return gameData.classic.playerColors.values();
     },
   },
 };

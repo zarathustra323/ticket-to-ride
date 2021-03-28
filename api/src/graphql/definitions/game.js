@@ -14,6 +14,10 @@ extend type Mutation {
     @auth
 }
 
+enum GameTypeEnum {
+  CLASSIC
+}
+
 enum GameSortFieldEnum {
   ID
   UPDATED_AT
