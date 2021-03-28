@@ -3,72 +3,59 @@ const { gql } = require('apollo-server-express');
 module.exports = gql`
 
 extend type Query {
-  "Finds all available game types."
-  gameTypes: [GameType!]!
-  "Finds all games for the currently logged-in user. The result is paginated."
-  myGames(input: MyGamesQueryInput = {}): GameConnection!
+  "Finds all game instances for the currently logged-in user. The result is paginated."
+  myGameInstances(input: MyGameInstancesQueryInput = {}): GameInstanceConnection!
     @auth
 }
 
 extend type Mutation {
-  "Creates a new classic game."
-  newClassicGame(input: NewClassicGameMutationInput!): Game!
+  "Creates a new classic game instance."
+  newClassicGame(input: NewClassicGameMutationInput!): ClassicGameInstance!
     @auth
 }
 
-enum GameTypeEnum {
-  CLASSIC
-}
-
-enum GameSortFieldEnum {
+enum GameInstanceSortFieldEnum {
   ID
   UPDATED_AT
 }
 
-interface GamePlayerInterface {
-  "The unique player identifier."
-  id: ObjectID! @project(field: "_id")
-  "The player's name."
-  name: String!
-}
-
-type Game {
+interface GameInstanceInterface {
   "The unique game identifier."
   id: ObjectID! @project(field: "_id")
-  "The game type."
-  type: GameTypeEnum! @project(field: "_type")
-  "The players of the game."
-  players: [GamePlayerInterface!] @project
+  "The game information."
+  game: Game! @project(field: "_type")
   "When the game was created, as a timestamp in milliseconds."
   createdAt: Date! @project
   "When the game was last updated, as a timestamp in milliseconds."
   updatedAt: Date! @project
 }
 
-type GameType {
-  "The internal game type."
-  id: GameTypeEnum!
-  "The game type name"
-  name: String!
+type ClassicGameInstance implements GameInstanceInterface @interfaceFields {
+  "The players of the game."
+  players: [ClassicGamePlayer!] @project
 }
 
-type GameConnection @projectUsing(type: "Game") {
+type GameInstanceConnection @projectUsing(type: "GameInstanceInterface") {
   "The total number of records found in the query."
   totalCount: Int!
   "An array of edge objects containing the record and the cursor."
-  edges: [GameEdge]!
+  edges: [GameInstanceEdge]!
   "Contains the pagination info for this query."
   pageInfo: PageInfo!
 }
 
-type GameEdge {
+type GameInstanceInterface {
   "The edge result node."
-  node: Game!
+  node: GameInstance!
   "The opaque cursor value for this record edge."
   cursor: String!
 }
 
-type ClassicGamePlayer implements GamePlayerInterface @interfaceFields {
+type ClassicGamePlayer {
+  "The unique player identifier."
+  id: ObjectID! @project(field: "_id")
+  "The player's name."
+  name: String!
   "The player's color."
   color: ClassicPlayerColorEnum!
 }
@@ -78,22 +65,22 @@ input AddClassicGamePlayerMutationInput {
   color: ClassicPlayerColorEnum!
 }
 
-input NewClassicGameMutationInput {
-  players: [AddClassicGamePlayerMutationInput!] = []
-}
-
-input GameSortInput {
+input GameInstanceSortInput {
   "The field to sort by."
-  field: GameSortFieldEnum
+  field: GameInstanceSortFieldEnum
   "The sort order, either \`DESC\` or \`ASC\`"
   order: SortOrderEnum
 }
 
-input MyGamesQueryInput {
+input MyGameInstancesQueryInput {
   "Sets sorting criteria for the query."
-  sort: GameSortInput
+  sort: GameInstanceSortInput
   "Sets pagination (limit/after) criteria for the query."
   pagination: PaginationInput = {}
+}
+
+input NewClassicGameMutationInput {
+  players: [AddClassicGamePlayerMutationInput!] = []
 }
 
 `;

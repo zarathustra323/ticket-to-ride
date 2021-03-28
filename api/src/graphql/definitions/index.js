@@ -3,8 +3,6 @@ const interfaceDirectives = require('@parameter1/graphql-directive-interface-fie
 const projectDirectives = require('@parameter1/graphql-directive-project/directives');
 const pagination = require('@parameter1/graphql-mongodb-pagination/definitions');
 
-const colors = require('./colors');
-const destinations = require('./destinations');
 const game = require('./game');
 const user = require('./user');
 
@@ -29,8 +27,6 @@ type Mutation {
   ping: String!
 }
 
-${colors}
-${destinations}
 ${game}
 ${user}
 
