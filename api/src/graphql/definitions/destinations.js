@@ -2,6 +2,10 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
 
+extend type Query {
+  classicDestinations: [ClassicDestination!]!
+}
+
 enum ClassicDestinationEnum {
   ATLANTA
   BOSTON
@@ -39,6 +43,15 @@ enum ClassicDestinationEnum {
   VANCOUVER
   WASHINGTON
   WINNIPEG
+}
+
+type ClassicDestination {
+  "The unique destination identifier."
+  id: ClassicDestinationEnum!
+  "The destination name."
+  name: String!
+  "Destinations that connect to this one."
+  destinations: [ClassicDestination!]!
 }
 
 `;

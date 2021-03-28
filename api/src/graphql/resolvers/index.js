@@ -5,6 +5,7 @@ const merge = require('lodash.merge');
 const pagination = require('@parameter1/graphql-mongodb-pagination/resolvers');
 
 const colors = require('./colors');
+const destinations = require('./destinations');
 const game = require('./game');
 const user = require('./user');
 
@@ -35,4 +36,4 @@ module.exports = merge({
       return 'pong';
     },
   },
-}, pagination, colors, game, user);
+}, pagination, colors, destinations, game, user);
