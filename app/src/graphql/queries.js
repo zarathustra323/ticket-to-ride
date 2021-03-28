@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const GAME_TYPES = gql`
-  query GameTypes {
-    gameTypes {
+export const GAMES = gql`
+  query Games {
+    games {
       id
       name
     }

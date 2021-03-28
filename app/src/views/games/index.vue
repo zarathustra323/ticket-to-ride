@@ -11,8 +11,8 @@
         {{ error.message }}
       </div>
       <ul v-else>
-        <li v-for="type in gameTypes" :key="type.id">
-          <go :to="{ name: 'games.new', query: { type: type.id } }">Create {{ type.name }} Game</go>
+        <li v-for="game in games" :key="game.id">
+          <go :to="{ name: 'games.new', query: { id: game.id } }">Create {{ game.name }} Game</go>
         </li>
       </ul>
     </div>
@@ -23,7 +23,7 @@
 <script>
 import Go from '../../components/link.vue';
 
-import { GAME_TYPES } from '../../graphql/queries';
+import { GAMES } from '../../graphql/queries';
 import GraphQLError from '../../utils/graphql-error';
 
 export default {
@@ -32,8 +32,8 @@ export default {
   },
 
   apollo: {
-    gameTypes: {
-      query: GAME_TYPES,
+    games: {
+      query: GAMES,
       error(e) {
         this.error = new GraphQLError(e);
       },
@@ -47,7 +47,7 @@ export default {
   data: () => ({
     error: null,
     isLoading: false,
-    gameTypes: [],
+    games: [],
   }),
 };
 </script>
