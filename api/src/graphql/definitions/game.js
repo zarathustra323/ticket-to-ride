@@ -47,12 +47,12 @@ type GameEdge {
 type GamePlayer {
   id: ObjectID! @project(field: "_id")
   name: String!
-  color: PlayerColorEnum!
+  color: ClassicPlayerColorEnum!
 }
 
 input AddGamePlayerMutationInput {
   name: String!
-  color: PlayerColorEnum!
+  color: ClassicPlayerColorEnum!
 }
 
 input CreateGameMutationInput {
