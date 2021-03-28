@@ -1,0 +1,13 @@
+module.exports = {
+  /**
+   *
+   */
+  Query: {
+    /**
+     *
+     */
+    classicPlayerColors(_, __, { gameData }) {
+      return gameData.classic.colors.player.values();
+    },
+  },
+};

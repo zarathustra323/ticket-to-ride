@@ -2,6 +2,10 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
 
+extend type Query {
+  classicPlayerColors: [ClassicPlayerColor!]!
+}
+
 enum ClassicPlayerColorEnum {
   BLACK
   BLUE
@@ -20,6 +24,11 @@ enum ClassicRouteColorEnum {
   RED
   WHITE
   YELLOW
+}
+
+type ClassicPlayerColor {
+  id: ClassicPlayerColorEnum!
+  name: String!
 }
 
 `;

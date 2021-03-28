@@ -4,6 +4,7 @@ const GraphQLDate = require('@parameter1/graphql-type-date');
 const merge = require('lodash.merge');
 const pagination = require('@parameter1/graphql-mongodb-pagination/resolvers');
 
+const colors = require('./colors');
 const game = require('./game');
 const user = require('./user');
 
@@ -34,4 +35,4 @@ module.exports = merge({
       return 'pong';
     },
   },
-}, pagination, game, user);
+}, pagination, colors, game, user);
