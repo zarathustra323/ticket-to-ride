@@ -1,6 +1,7 @@
 const AuthContext = require('./auth');
 const createLoaders = require('../dataloaders');
 const repos = require('../../repo');
+const gameData = require('../../data');
 
 module.exports = async ({ req }) => {
   const auth = new AuthContext({
@@ -12,6 +13,7 @@ module.exports = async ({ req }) => {
     auth.load(),
   ]);
   return {
+    gameData,
     auth,
     req,
     repos,
