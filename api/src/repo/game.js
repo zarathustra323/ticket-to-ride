@@ -28,19 +28,19 @@ class GameRepo extends PaginableRepo {
   /**
    * @param {object} params
    * @param {ObjectId} params.userId
-   * @param {string} [params.name]
+   * @param {string} params.type
    * @param {object[]} [params.players]
    * @param {object} [params.options]
    */
   async create(params = {}) {
     const {
       userId,
-      name,
+      type,
       players,
       options,
     } = await validateAsync(Joi.object({
       userId: fields.userId,
-      name: fields.name,
+      type: fields.type,
       players: fields.players,
       options: Joi.object().default({}),
     }).required(), params);
@@ -50,7 +50,7 @@ class GameRepo extends PaginableRepo {
     });
     return this.insertOne({
       doc: {
-        name,
+        _type: type,
         players: players.map((player) => ({ _id: new ObjectId(), ...player })),
         user,
       },

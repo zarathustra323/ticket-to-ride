@@ -9,8 +9,8 @@ extend type Query {
 }
 
 extend type Mutation {
-  "Creates a new game."
-  createGame(input: CreateGameMutationInput!): Game!
+  "Creates a new classic game."
+  newClassicGame(input: NewClassicGameMutationInput!): ClassicGame!
     @auth
 }
 
@@ -23,16 +23,30 @@ enum GameSortFieldEnum {
   UPDATED_AT
 }
 
-type Game {
-  "The "
+interface GameInterface {
+  "The unique game identifier."
   id: ObjectID! @project(field: "_id")
-  name: String @project
-  players: [GamePlayer!] @project
+  "The game type."
+  type: GameTypeEnum! @project(field: "_type")
+  "When the game was created, as a timestamp in milliseconds."
   createdAt: Date! @project
+  "When the game was last updated, as a timestamp in milliseconds."
   updatedAt: Date! @project
 }
 
-type GameConnection @projectUsing(type: "Game") {
+interface GamePlayerInterface {
+  "The unique player identifier."
+  id: ObjectID! @project(field: "_id")
+  "The player's name."
+  name: String!
+}
+
+type ClassicGame implements GameInterface @interfaceFields {
+  "The players of the game."
+  players: [ClassicGamePlayer!] @project
+}
+
+type GameConnection @projectUsing(type: "GameInterface") {
   "The total number of records found in the query."
   totalCount: Int!
   "An array of edge objects containing the record and the cursor."
@@ -43,25 +57,23 @@ type GameConnection @projectUsing(type: "Game") {
 
 type GameEdge {
   "The edge result node."
-  node: Game!
+  node: GameInterface!
   "The opaque cursor value for this record edge."
   cursor: String!
 }
 
-type GamePlayer {
-  id: ObjectID! @project(field: "_id")
+type ClassicGamePlayer implements GamePlayerInterface @interfaceFields {
+  "The player's color."
+  color: ClassicPlayerColorEnum!
+}
+
+input AddClassicGamePlayerMutationInput {
   name: String!
   color: ClassicPlayerColorEnum!
 }
 
-input AddGamePlayerMutationInput {
-  name: String!
-  color: ClassicPlayerColorEnum!
-}
-
-input CreateGameMutationInput {
-  name: String
-  players: [AddGamePlayerMutationInput!] = []
+input NewClassicGameMutationInput {
+  players: [AddClassicGamePlayerMutationInput!] = []
 }
 
 input GameSortInput {

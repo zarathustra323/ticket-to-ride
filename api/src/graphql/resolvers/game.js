@@ -4,7 +4,20 @@ module.exports = {
   /**
    *
    */
-  Game: {
+  GameInterface: {
+    /**
+     *
+     */
+    __resolveType(doc) {
+      if (doc._type === 'CLASSIC') return 'ClassicGame';
+      return null;
+    },
+  },
+
+  /**
+   *
+   */
+  ClassicGame: {
     /**
      *
      */
@@ -25,10 +38,10 @@ module.exports = {
    *
    */
   Mutation: {
-    createGame(_, { input }, { repos, auth }) {
+    newClassicGame(_, { input }, { repos, auth }) {
       const userId = auth.getUserId();
-      const { name, players } = input;
-      return repos.game.create({ userId, name, players });
+      const { players } = input;
+      return repos.game.create({ type: 'CLASSIC', userId, players });
     },
   },
 
@@ -44,7 +57,10 @@ module.exports = {
       const { sort, pagination } = input;
       const options = {
         sort,
-        projection: connectionProjection(info),
+        projection: {
+          ...connectionProjection(info),
+          _type: 1, // @todo the project directive should have an option to always include fields
+        },
         ...pagination,
       };
       return repos.game.paginateForUser({ userId, options });
