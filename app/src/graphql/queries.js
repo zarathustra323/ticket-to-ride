@@ -9,6 +9,35 @@ export const GAMES = gql`
   }
 `;
 
+export const USER_GAME_INSTANCES = gql`
+  query UserGameInstances {
+    myGameInstances {
+      totalCount
+      edges {
+        node {
+          id
+          game {
+            id
+            name
+          }
+          players {
+            id
+            name
+            color {
+              id
+              name
+            }
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+`;
+
 export const PING = gql`
   query Ping {
     ping
