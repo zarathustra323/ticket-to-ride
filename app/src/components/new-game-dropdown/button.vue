@@ -1,13 +1,14 @@
 <template>
   <button
     :class="classes"
+    :aria-expanded="isOpen"
+    :disabled="isLoading"
     type="button"
     id="create-new-game-menu"
-    :aria-expanded="isOpen"
     aria-haspopup="true"
     @click="$emit('click', $event)"
   >
-    New Game
+    {{ label }}
     <chevron-down class="-mr-1 ml-2 h-5 w-5" />
   </button>
 </template>
@@ -21,6 +22,10 @@ export default {
   },
 
   props: {
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
     isOpen: {
       type: Boolean,
       default: false,
@@ -50,5 +55,15 @@ export default {
       'focus:ring-blue-500',
     ],
   }),
+
+  computed: {
+    /**
+     * @todo replace with loading spinner (that doesn't change the btn width)
+     */
+    label() {
+      if (this.isLoading) return 'Loading...';
+      return 'New Game';
+    },
+  },
 };
 </script>

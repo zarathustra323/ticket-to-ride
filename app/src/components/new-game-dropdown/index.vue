@@ -1,7 +1,11 @@
 <template>
   <div class="relative inline-block text-left" v-closeable="onOutsideClick">
     <div>
-      <btn :is-open="isOpen" @click="isOpen = !isOpen" />
+      <btn
+        :is-open="isOpen"
+        :is-loading="isLoading"
+        @click="isOpen = !isOpen"
+      />
     </div>
     <transition
       enter-active-class="transition ease-out duration-100"
@@ -13,10 +17,12 @@
     >
       <dropdown-menu v-show="isOpen">
         <dropdown-link
-          :to="{ name: 'games.new', query: { id: 'CLASSIC' } }"
+          v-for="game in games"
+          :key="game.id"
+          :to="{ name: 'games.new', query: { id: game.id } }"
           @click="isOpen = false"
         >
-          Classic
+          {{ game.name }}
         </dropdown-link>
       </dropdown-menu>
     </transition>
@@ -28,6 +34,9 @@ import Btn from './button.vue';
 import DropdownMenu from './menu.vue';
 import DropdownLink from './link.vue';
 
+import { GAMES } from '../../graphql/queries';
+import GraphQLError from '../../utils/graphql-error';
+
 export default {
   components: {
     Btn,
@@ -35,7 +44,23 @@ export default {
     DropdownLink,
   },
 
+  apollo: {
+    games: {
+      query: GAMES,
+      error(e) {
+        this.error = new GraphQLError(e);
+      },
+      watchLoading(isLoading) {
+        this.isLoading = isLoading;
+        if (isLoading) this.error = null;
+      },
+    },
+  },
+
   data: () => ({
+    error: null,
+    games: [],
+    isLoading: null,
     isOpen: false,
   }),
 
