@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 rounded border max-w-sm space-y-6">
+  <div class="p-4 border border-gray-300 rounded-md shadow-sm space-y-4">
     <div class="text-lg font-medium">Create New Game</div>
 
     <form class="space-y-4">

@@ -6,6 +6,8 @@
       <new-game-dropdwon />
     </div>
 
+    <router-view />
+
     <div v-if="isLoading">
       Loading games...
     </div>
@@ -30,7 +32,6 @@
         </div>
       </div>
     </div>
-    <router-view />
   </div>
 </template>
 
