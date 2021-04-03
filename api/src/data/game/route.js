@@ -6,9 +6,11 @@ class Route {
     cities = [],
     length,
     color,
+    points,
   } = {}, settings = {}) {
     if (!cities.length === 2) throw new Error('A route must have two cities.');
     if (!length || length < 1) throw new Error('The route length must be at least one.');
+    if (!points) throw new Error('Points must be assigned to each route.');
 
     // a `null` or `Any` color signifies that any color can be used.
     if (color && color !== 'Any' && !settings.routeColors.has(color)) {
@@ -22,6 +24,7 @@ class Route {
       return city.id;
     });
     this.length = length;
+    this.points = points;
     this.colorId = (!color || color === 'Any')
       ? null
       : settings.routeColors.get(color).id;

@@ -3,13 +3,19 @@ const Route = require('./route');
 class Routes extends Map {
   constructor({ gameId, routes = [], settings } = {}) {
     if (!gameId) throw new Error('No game ID was provided to the Routes constructor.');
-    super(routes.reduce((arr, { cities, length, colors }) => {
+    super(routes.reduce((arr, {
+      cities,
+      length,
+      colors,
+      points,
+    }) => {
       colors.forEach((color) => {
         const route = new Route({
           gameId,
           cities,
           length,
           color,
+          points,
         }, settings);
         arr.push([route.id, route]);
       });

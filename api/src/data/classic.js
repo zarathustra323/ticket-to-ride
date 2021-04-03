@@ -2,6 +2,15 @@ const Game = require('./game');
 
 class ClassicGame extends Game {
   constructor() {
+    const scoring = {
+      1: 1,
+      2: 2,
+      3: 4,
+      4: 7,
+      5: 10,
+      6: 15,
+    };
+
     super({
       name: 'Classic',
       minPlayers: 2,
@@ -138,7 +147,10 @@ class ClassicGame extends Game {
         { cities: ['Sault St. Marie', 'Toronto'], length: 2, colors: ['Any'] },
         { cities: ['Sault St. Marie', 'Winnipeg'], length: 6, colors: ['Any'] },
         { cities: ['Seattle', 'Vancouver'], length: 1, colors: ['Any', 'Any'] },
-      ],
+      ].map((route) => ({
+        ...route,
+        points: scoring[route.length],
+      })),
     });
   }
 }
