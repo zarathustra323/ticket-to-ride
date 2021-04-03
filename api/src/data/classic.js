@@ -5,7 +5,6 @@ class ClassicGame extends Game {
     super({
       name: 'Classic',
       minPlayers: 2,
-      maxPlayers: 5,
       playerColors: [
         'Black',
         'Blue',

@@ -10,13 +10,12 @@ class Game {
     cities = [],
     routes = [],
     minPlayers = 2,
-    maxPlayers = 5,
   } = {}) {
     this.id = createId(name);
     this.name = name;
 
     this.minPlayers = minPlayers;
-    this.maxPlayers = maxPlayers;
+    this.maxPlayers = playerColors.length;
 
     this.playerColors = new Elements({ gameId: this.id, names: playerColors });
     this.routeColors = new Elements({ gameId: this.id, names: routeColors });
