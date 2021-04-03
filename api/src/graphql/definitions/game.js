@@ -22,6 +22,10 @@ interface GameInterface {
   colors: GameColors!
   "The game citites."
   cities: [GameCity!]!
+  "The minimum number of players."
+  minPlayers: Int!
+  "The maximum number of players."
+  maxPlayers: Int!
 }
 
 type ClassicGame implements GameInterface @interfaceFields {
