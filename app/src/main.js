@@ -4,6 +4,7 @@ import closeable from './directives/closeable';
 import userService from './services/user';
 
 import './plugins/head';
+import './plugins/portal';
 import apolloProvider from './plugins/apollo-provider';
 import router from './plugins/router';
 
