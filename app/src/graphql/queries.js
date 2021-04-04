@@ -5,6 +5,14 @@ export const GAMES = gql`
     games {
       id
       name
+      minPlayers
+      maxPlayers
+      colors {
+        player {
+          id
+          name
+        }
+      }
     }
   }
 `;
