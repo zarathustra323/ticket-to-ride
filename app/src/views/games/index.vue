@@ -1,12 +1,10 @@
 <template>
-  <div class="p-4 space-y-4 max-w-md">
+  <div class="p-4 space-y-4 max-w-7xl">
     <h2 class="font-medium text-xl">My Games</h2>
 
-    <div>
-      <new-game-dropdwon />
-    </div>
-
-    <router-view />
+    <btn @click="$router.push({ name: 'games.new' })">
+      New Game
+    </btn>
 
     <div v-if="isLoading">
       Loading games...
@@ -14,7 +12,7 @@
     <div v-else-if="error">
       {{ error.message }}
     </div>
-    <div class="grid grid-cols-1" v-else>
+    <div class="grid grid-cols-3" v-else>
       <div
         v-for="instance in instances"
         :key="instance.id"
@@ -32,18 +30,20 @@
         </div>
       </div>
     </div>
+
+    <router-view />
   </div>
 </template>
 
 <script>
-import NewGameDropdwon from '../../components/new-game-dropdown/index.vue';
+import Btn from '../../components/forms/button.vue';
 
 import { USER_GAME_INSTANCES } from '../../graphql/queries';
 import GraphQLError from '../../utils/graphql-error';
 
 export default {
   components: {
-    NewGameDropdwon,
+    Btn,
   },
 
   apollo: {
